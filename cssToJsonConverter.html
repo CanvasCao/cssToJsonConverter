@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        textarea {
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<textarea name="" id="a" cols="30" rows="10">
+</textarea>
+<textarea name="" id="b" cols="30" rows="10"></textarea>
+<button id='btn'>转换</button>
+
+<script>
+    onload = function () {
+        var btn = document.getElementById('btn');
+        var a = document.getElementById('a');
+        var b = document.getElementById('b');
+
+        btn.onclick = function () {
+            var str = a.value;
+            var array = str.split('\n');
+
+            [].forEach.call(array, function (e, i, arr) {
+                var str = e.trim();
+                console.log(str);
+                str = str.replace(/([\w-]+)(\s?):(\s?)([^;]+)([;]?)/g, "'$1':'$4',");
+                array[i] = str;
+            })
+
+            b.value = array.join('\n');
+        }
+
+
+    }
+</script>
+</body>
+</html>
